@@ -1,0 +1,263 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    color: white;
+    /* background-color: #0f1416; */
+    
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right, #0f1416, #242628);
+}
+
+.group_wrapper {
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 700px;
+
+    width: 100vw;
+    gap: clamp(40px, 5vw, 48px);
+
+}
+
+.group_wrapper > .text {
+    border-radius: 10px;
+    border: solid 1px aliceblue;
+    padding: clamp(40px, 5vw, 48px);
+    width: 100%;
+    flex-grow: 1;
+
+    font-size: 1.5em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.group_wrapper > .options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    gap: clamp(40px, 5vw, 48px);
+    flex-grow: 1;
+}
+
+.group_wrapper > .options > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-basis: 50%; */
+    width: 50%;
+
+    border-radius: 10px;
+    padding: clamp(28px, 5vw, 30px);
+    border: solid 1px white;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    aspect-ratio: 1/1;
+}
+
+.group_wrapper > .options > .groupA:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: skyblue;
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.group_wrapper > .options > .groupB:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: rgb(255, 45, 45);
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.questionaire_wrapper {
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100vw;
+    gap: clamp(4px, 5vw, 48px);
+
+    max-width: 700px;
+}
+.questionaire_wrapper > .questionaire {
+    border-radius: 10px;
+    border: solid 1px aliceblue;padding: clamp(40px, 5vw, 48px);
+    width: 100%;
+    flex-grow: 1;
+
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.questionaire_wrapper > .options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    gap: clamp(4px, 5vw, 48px);
+    flex-grow: 1;
+}
+
+.questionaire_wrapper > .options > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 50%;
+
+    border-radius: 10px;
+    padding: clamp(28px, 5vw, 30px);
+    border: solid 1px white;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+}
+
+.questionaire_wrapper > .options > .fact:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: skyblue;
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.questionaire_wrapper > .options > .bluff:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: rgb(255, 45, 45);
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.mysterious_wrapper {
+    /* display: flex; */
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100vw;
+    gap: clamp(40px, 5vw, 48px);
+
+    max-width: 700px;
+    padding: clamp(40px, 5vw, 48px);
+}
+
+.mysterious_wrapper > .score {
+    border-radius: 10px;
+    border: solid 1px aliceblue;padding: clamp(40px, 5vw, 48px);
+    width: 100%;
+    flex-grow: 1;
+    aspect-ratio: 1/1;
+
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16em;
+
+}
+
+.mysterious_wrapper > .options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    gap: clamp(4px, 5vw, 48px);
+    flex-grow: 1;
+}
+
+.mysterious_wrapper > .options > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 50%;
+
+    border-radius: 10px;
+    padding: clamp(28px, 5vw, 30px);
+    border: solid 1px white;
+    font-size: 1.3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+}
+
+.mysterious_wrapper > .options > .take:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: skyblue;
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.mysterious_wrapper > .options > .give:hover {
+    transition-duration: .1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    scale: 1.05;
+
+    font-size: 1.4em;
+    background-color: rgb(255, 45, 45);
+    text-shadow: 1px 1px 1px black;
+    font-weight: 700;
+}
+
+.answer_queue {
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    font-size: 5em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+.correct_color {
+    background-color: skyblue;
+}
+.wrong_color {
+    background-color: rgb(255, 45, 45);
+}
