@@ -1,5 +1,5 @@
 const max_replica = 2
-const mystery_collection = [1, 2, 3, 5, -1, -2, -3, -5].flatMap(n => {
+let mystery_collection = [1, 2, 3, 5, -1, -2, -3, -5].flatMap(n => {
     const duplicates = []
     for (let i = 0; i < max_replica; ++i) {
         if (n > 0) duplicates.push(n)
@@ -169,6 +169,7 @@ take.addEventListener("click", async () => {
 
     const groupScore = choice(mystery_collection)
     score.textContent = groupScore
+    spliceAtFirstOccurrence(mystery_collection, groupScore)
 
     takeScore(groupScore)
     await sleep(1000)
@@ -183,6 +184,7 @@ give.addEventListener("click", async () => {
 
     const groupScore = choice(mystery_collection)
     score.textContent = groupScore
+    spliceAtFirstOccurrence(mystery_collection, groupScore)
 
     giveScore(groupScore)
     await sleep(1000)
@@ -321,5 +323,3 @@ function randint(min, max) {
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
-
-choice(mystery_collection)
