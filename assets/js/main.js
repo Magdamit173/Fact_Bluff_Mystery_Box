@@ -82,6 +82,7 @@ const groupBText = document.querySelector("[data-groupBText]")
 const groupAInt = document.querySelector("[data-groupAInt]")
 const groupBInt = document.querySelector("[data-groupBInt]")
 const group_turn = document.querySelector("[data-group_turn]")
+const number_pool = document.querySelector("[data-number_pool]")
 
 manifestGroup()
 // manifestResult()
@@ -123,6 +124,7 @@ fact.addEventListener("click", async () => {
         answerQueue("", false)
         questionaire_collection.splice(questionaire_collection.indexOf(currentQuestion), 1)
         // questionaire_collection.filter(item => item !== currentQuestion)
+        manifestNumberPool()
 
         manifestMystery()
         mysteryGenerator()
@@ -148,6 +150,7 @@ bluff.addEventListener("click", async () => {
         answerQueue("", false)
         questionaire_collection.splice(questionaire_collection.indexOf(currentQuestion), 1)
         // questionaire_collection.filter(item => item !== currentQuestion)
+        manifestNumberPool()
 
         manifestMystery()
         mysteryGenerator()
@@ -170,6 +173,8 @@ take.addEventListener("click", async () => {
     const groupScore = choice(mystery_collection)
     score.textContent = groupScore
     spliceAtFirstOccurrence(mystery_collection, groupScore)
+    removeNumberPool(groupScore)
+    manifestNumberPool(false)
 
     takeScore(groupScore)
     await sleep(1000)
@@ -185,6 +190,8 @@ give.addEventListener("click", async () => {
     const groupScore = choice(mystery_collection)
     score.textContent = groupScore
     spliceAtFirstOccurrence(mystery_collection, groupScore)
+    removeNumberPool(groupScore)
+    manifestNumberPool(false)
 
     giveScore(groupScore)
     await sleep(1000)
@@ -206,6 +213,7 @@ result_wrapper.addEventListener("click", async () => {
             answerQueue(`Draw! Score: ${(groupBScore + groupAScore) / 2}`)
         }
 
+        number_pool.replaceChildren()
         answer_queue.style.animation = borderIndicator(1, 0)
         manifestResult(false)
         resetIndicator(groupAScoreDisplay, groupBScoreDisplay)
@@ -233,6 +241,10 @@ function manifestMystery(boolean) {
 function manifestResult(boolean) {
     if (boolean || boolean === undefined) result_wrapper.style.display = "flex"
     else result_wrapper.style.display = "none"
+}
+function manifestNumberPool(boolean) {
+    if (boolean || boolean === undefined) number_pool.style.display = "flex"
+    else number_pool.style.display = "none"
 }
 
 function questionaireGenerator() {
@@ -313,6 +325,32 @@ function groupTurn(text) {
     if (text) group_turn.textContent = `${text}'s Turn`
     else group_turn.textContent = `No one's Turn`
 }
+
+function removeNumberPool(compareText) {
+    const numberPool = document.querySelector('.number_pool')
+
+    if (numberPool) {
+        const children = Array.from(numberPool.children)
+        const indexToRemove = children.findIndex(child => parseFloat(child.textContent) === compareText)
+
+        if (indexToRemove !== -1) {
+            children.splice(indexToRemove, 1)
+            numberPool.innerHTML = ''
+            children.forEach(child => numberPool.appendChild(child))
+        }
+    }
+}
+
+
+// initialized number_pool
+mystery_collection.forEach(value => {
+    const digit = document.createElement("div")
+    digit.setAttribute("class","digit")
+    digit.textContent = value
+
+    number_pool.append(digit)
+})
+
 
 function choice(list) {
     return list[Math.floor(Math.random() * list.length)]

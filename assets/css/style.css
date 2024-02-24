@@ -341,6 +341,51 @@ body {
     overflow: hidden;
 }
 
+.number_pool {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 101;
+
+    /* display: flex; */
+    display: none;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+
+    margin: 10px;
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+    height: 100vh;
+    background-color: #242628;
+
+}
+
+*::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    background-color: #0f1416;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 10px;
+}
+
+.digit {
+    padding: clamp(0.7em, 20vw, 1em);
+    border-radius: 10px;
+    border: solid 1px white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    aspect-ratio: 1/1;
+    margin: 5px;
+
+}
+
 @keyframes skyIndicator {
     0% {
         border-color: skyblue;
