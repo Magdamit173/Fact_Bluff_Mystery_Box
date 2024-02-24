@@ -1,12 +1,16 @@
 const max_replica = 2
 const mystery_collection = [1, 2, 3, 5, -1, -2, -3, -5].flatMap(n => {
-    const duplicates = Array.from({ length: max_replica }, () => n)
+    const duplicates = []
+    for (let i = 0; i < max_replica; ++i) {
+        if (n > 0) duplicates.push(n)
+        else return n
+    }
     return duplicates
 })
 const replica_collection = []
 
-const groupAName = "Totropahin"
-const groupBName = "Titikman"
+const groupAName = "Group A"
+const groupBName = "Group B"
 
 let active_popup = null
 
@@ -28,32 +32,35 @@ const result_wrapper = document.querySelector("[data-result_wrapper]")
 
 const questionaire_collection = [
     {
-        "text": "Is water a gas at room temperature?",
-        "value": false
-    },
-    {
-        "text": "Can humans breathe underwater?",
-        "value": false
-    },
-    {
-        "text": "Is the capital of France London?",
-        "value": false
-    },
-    {
-        "text": "Do plants require sunlight to grow?",
+        "text": "Scuba diving enables individuals to explore the underwater world by wearing special equipment that allows them to breathe underwater.",
         "value": true
     },
     {
-        "text": "Is the Earth flat?",
+        "text": "Scuba diving involves wearing heavy metal boots to sink to the bottom of the ocean quickly.",
         "value": false
     },
     {
-        "text": "Are penguins capable of flight?",
+        "text": "Scuba diving requires specialized training and certification to ensure safety underwater, including learning about equipment operation, safety procedures, and diving physics.",
+        "value": true
+    },
+    {
+        "text": "Scuba diving certification includes a module on underwater navigation, where divers are taught to use celestial bodies such as stars and the moon to orient themselves underwater.",
+        "value": false
+    }, {
+        "text": "Scuba diving involves using special underwater suits made of bubble wrap for protection against marine creatures.",
         "value": false
     },
     {
-        "text": "Does the sun revolve around the Earth?",
+        "text": "Scuba diving provides a unique opportunity to witness breathtaking underwater landscapes, encounter diverse marine life, and explore submerged shipwrecks and coral reefs.",
+        "value": true
+    },
+    {
+        "text": "Some advanced scuba diving techniques involve harnessing bio-luminescent algae to illuminate dark underwater caves, creating a mesmerizing and otherworldly experience for divers.",
         "value": false
+    },
+    {
+        "text": "Scuba diving involves wearing a mask, fins, and a buoyancy control device (BCD) along with a tank of compressed air",
+        "value": true
     }
 ]
 
@@ -70,14 +77,22 @@ const take = document.querySelector("[data-take]")
 const give = document.querySelector("[data-give]")
 const groupAScoreDisplay = document.querySelector("[data-groupAScoreDisplay]")
 const groupBScoreDisplay = document.querySelector("[data-groupBScoreDisplay]")
+const groupAText = document.querySelector("[data-groupAText]")
+const groupBText = document.querySelector("[data-groupBText]")
+const groupAInt = document.querySelector("[data-groupAInt]")
+const groupBInt = document.querySelector("[data-groupBInt]")
+const group_turn = document.querySelector("[data-group_turn]")
 
 manifestGroup()
+// manifestResult()
 
 groupA.textContent = groupAName
+groupAText.textContent = groupAName
 groupA.addEventListener("click", async () => {
     if (!await confirmPopUp(`Are You Sure ${groupAName}?`, "No", "Yes")) return
 
     currentGroup = groupAName
+    groupTurn(currentGroup)
     manifestGroup(false)
     await sleep(300)
     manifestQuestionaire()
@@ -85,9 +100,12 @@ groupA.addEventListener("click", async () => {
 })
 
 groupB.textContent = groupBName
+groupBText.textContent = groupBName
 groupB.addEventListener("click", async () => {
     if (!await confirmPopUp(`Are You Sure ${groupBName}?`, "No", "Yes")) return
+
     currentGroup = groupBName
+    groupTurn(currentGroup)
     manifestGroup(false)
     await sleep(300)
     manifestQuestionaire()
@@ -110,6 +128,8 @@ fact.addEventListener("click", async () => {
         mysteryGenerator()
     }
     else {
+        groupTurn()
+
         answerQueue("Wrong!", true, false)
         await sleep(1000)
         answerQueue("", false)
@@ -133,6 +153,8 @@ bluff.addEventListener("click", async () => {
         mysteryGenerator()
     }
     else {
+        groupTurn()
+
         answerQueue("Wrong!", true, false)
         await sleep(1000)
         answerQueue("", false)
@@ -170,8 +192,9 @@ give.addEventListener("click", async () => {
 
 result_wrapper.addEventListener("click", async () => {
     if (questionaire_collection.length <= 0) {
+        groupTurn()
 
-        if(groupAScore > groupBScore) {
+        if (groupAScore > groupBScore) {
             answerQueue(`${groupAName} Wins! Score: ${groupAScore}\n ${groupBName}'s Score: ${groupBScore} `)
         }
         else if (groupBScore > groupAScore) {
@@ -186,6 +209,7 @@ result_wrapper.addEventListener("click", async () => {
         resetIndicator(groupAScoreDisplay, groupBScoreDisplay)
     }
     else if (await confirmPopUp("You Sure Wanna Pick Group?", "No", "Yes")) {
+        groupTurn()
         manifestResult(false)
         manifestGroup()
         resetIndicator(groupAScoreDisplay, groupBScoreDisplay)
@@ -251,24 +275,24 @@ function answerQueue(text, boolean, color) {
 function takeScore(score) {
     if (currentGroup == groupAName) {
         groupAScore += score
-        groupAScoreDisplay.textContent = groupAScore
+        groupAInt.textContent = groupAScore
         groupAScoreDisplay.style.animation = borderIndicator(groupAScore, groupBScore)
     }
     else if (currentGroup == groupBName) {
         groupBScore += score
-        groupBScoreDisplay.textContent = groupBScore
+        groupBInt.textContent = groupBScore
         groupBScoreDisplay.style.animation = borderIndicator(groupBScore, groupAScore)
     }
 }
 function giveScore(score) {
     if (currentGroup == groupAName) {
         groupBScore += score
-        groupBScoreDisplay.textContent = groupBScore
+        groupBInt.textContent = groupBScore
         groupBScoreDisplay.style.animation = borderIndicator(groupBScore, groupAScore)
     }
     else if (currentGroup == groupBName) {
         groupAScore += score
-        groupAScoreDisplay.textContent = groupAScore
+        groupAInt.textContent = groupAScore
         groupAScoreDisplay.style.animation = borderIndicator(groupAScore, groupBScore)
     }
 }
@@ -281,6 +305,11 @@ function resetIndicator(...elements) {
     for (let element of elements) {
         element.style.animation = ""
     }
+}
+
+function groupTurn(text) {
+    if (text) group_turn.textContent = `${text}'s Turn`
+    else group_turn.textContent = `No one's Turn`
 }
 
 function choice(list) {

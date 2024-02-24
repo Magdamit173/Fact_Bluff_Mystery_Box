@@ -18,6 +18,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-image: linear-gradient(to right, #0f1416, #242628);
+    overflow: hidden;
 }
 
 .group_wrapper {
@@ -283,6 +284,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     /* border: solid 1px lavender; */
     height: 100vh;
@@ -293,7 +295,50 @@ body {
     border-color: #0f1416;
 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+.scoreText {
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: clamp(1.4em, 30vw, 2.8em);
+
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90%;
+    max-width: 45vw;
+    margin: 10px;
+
+}
+
+.scoreValue {
     font-size: clamp(10em, 30vw, 15em);
+}
+
+.group_turn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: clamp(0.7em, 20vw, 1em);
+    margin: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    border-radius: 10px;
+    border: solid 1px white;
+
+    overflow: hidden;
 }
 
 @keyframes skyIndicator {
@@ -313,6 +358,5 @@ body {
         border-color: rgba(255, 45, 45, 0);
     }
 }
-
 
 /* groupAScoreDisplay.style.animation = "valueIndicator 1s linear infinite" */
