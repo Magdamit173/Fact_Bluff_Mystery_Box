@@ -1,5 +1,5 @@
 const max_replica = 2
-let mystery_collection = [1, 2, 3, 5, -1, -2, -3, -5].flatMap(n => {
+let mystery_collection = [1, 1, 2, 3, 5, 7, -1, -2, -3, -5, -5, -10].flatMap(n => {
     const duplicates = []
     for (let i = 0; i < max_replica; ++i) {
         if (n > 0) duplicates.push(n)
@@ -32,37 +32,87 @@ const result_wrapper = document.querySelector("[data-result_wrapper]")
 
 const questionaire_collection = [
     {
-        "text": "Scuba diving enables individuals to explore the underwater world by wearing special equipment that allows them to breathe underwater.",
+        "text": "Sustainable development seeks to meet present needs without compromising the ability of future generations to meet their needs.",
         "value": true
     },
     {
-        "text": "Scuba diving involves wearing heavy metal boots to sink to the bottom of the ocean quickly.",
+        "text": "Sustainability only focuses on environmental protection, ignoring social and economic factors.",
         "value": false
     },
     {
-        "text": "Scuba diving requires specialized training and certification to ensure safety underwater, including learning about equipment operation, safety procedures, and diving physics.",
+        "text": "Climate change is one of the challenges that sustainable development addresses.",
         "value": true
     },
     {
-        "text": "Scuba diving certification includes a module on underwater navigation, where divers are taught to use celestial bodies such as stars and the moon to orient themselves underwater.",
-        "value": false
-    }, {
-        "text": "Scuba diving involves using special underwater suits made of bubble wrap for protection against marine creatures.",
-        "value": false
-    },
-    {
-        "text": "Scuba diving provides a unique opportunity to witness breathtaking underwater landscapes, encounter diverse marine life, and explore submerged shipwrecks and coral reefs.",
+        "text": "Resource depletion refers to the overuse of natural resources that leads to scarcity.",
         "value": true
     },
     {
-        "text": "Some advanced scuba diving techniques involve harnessing bio-luminescent algae to illuminate dark underwater caves, creating a mesmerizing and otherworldly experience for divers.",
+        "text": "Social sustainability is concerned with ensuring access to education, healthcare, and fair labor practices.",
+        "value": true
+    },
+    {
+        "text": "Economic sustainability focuses on short-term economic growth and immediate profit.",
         "value": false
     },
     {
-        "text": "Scuba diving involves wearing a mask, fins, and a buoyancy control device (BCD) along with a tank of compressed air",
+        "text": "Science and technology are irrelevant to sustainable development.",
+        "value": false
+    },
+    {
+        "text": "Policy integration is essential for long-term sustainability, encouraging green industries and renewable energy.",
         "value": true
+    },
+    {
+        "text": "International cooperation is unnecessary for sustainability, as local solutions are sufficient.",
+        "value": false
+    },
+    {
+        "text": "Sustainable technology includes renewable energy sources like solar, wind, and hydroelectric power.",
+        "value": true
+    },
+    {
+        "text": "Circular economy promotes waste reduction by encouraging the reuse and recycling of resources.",
+        "value": true
+    },
+    {
+        "text": "Biodiversity conservation involves protecting ecosystems, preventing habitat destruction, and maintaining species.",
+        "value": true
+    },
+    {
+        "text": "Sustainable consumption refers to using resources irresponsibly, leading to environmental degradation.",
+        "value": false
+    },
+    {
+        "text": "Community engagement is vital for the success of sustainability initiatives.",
+        "value": true
+    },
+    {
+        "text": "Economic diversification includes moving towards industries like renewable energy and sustainable agriculture.",
+        "value": true
+    },
+    {
+        "text": "Biodiversity loss is a challenge that sustainable development tries to prevent.",
+        "value": true
+    },
+    {
+        "text": "Sustainable consumption and production practices aim to reduce environmental impact and promote ethical labor practices.",
+        "value": true
+    },
+    {
+        "text": "Traditional knowledge, such as sustainable farming, can contribute to more effective sustainability solutions.",
+        "value": true
+    },
+    {
+        "text": "The main goal of sustainable development is to balance environmental, social, and economic needs.",
+        "value": true
+    },
+    {
+        "text": "Education and public awareness play no role in promoting sustainable lifestyles.",
+        "value": false
     }
 ]
+
 
 
 
