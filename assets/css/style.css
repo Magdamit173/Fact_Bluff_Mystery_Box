@@ -79,7 +79,7 @@ body {
 
     font-size: 1.4em;
     background-color: skyblue;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 1px #bcdbd3;
     font-weight: 700;
 }
 
@@ -91,7 +91,7 @@ body {
 
     font-size: 1.4em;
     background-color: rgb(255, 45, 45);
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 1px #bcdbd3;
     font-weight: 700;
 }
 
